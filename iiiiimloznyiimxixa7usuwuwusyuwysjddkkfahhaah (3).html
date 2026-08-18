@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>انت احمق فيروس</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="icon" type="image/png" href="ec447bce1f2120c3b0e739e01577b105 (1).jpg">
+
+    <style>
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(56, 189, 248, 0.2); }
+            50% { box-shadow: 0 0 35px rgba(56, 189, 248, 0.5); }
+        }
+        @keyframes floatAnim {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .cyber-card {
+            animation: pulseGlow 4s infinite ease-in-out;
+        }
+        .float-hover:hover {
+            animation: floatAnim 1s ease infinite;
+        }
+        /* خلفية مصفوفة رقمية متحركة خفيفة */
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #030712;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        /* شاشة التحقق */
+        .verification-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #030712;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 999999;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        .verification-spinner {
+            position: relative; width: 50px; height: 50px; margin: 0 auto 20px auto;
+        }
+        .verification-spinner div {
+            position: absolute; width: 4px; height: 14px; background: #38bdf8;
+            border-radius: 2px; top: 0; left: 23px; transform-origin: 2px 25px;
+            animation: verificationFade 1.1s linear infinite;
+        }
+        .verification-spinner div:nth-child(1)  { transform: rotate(0deg); animation-delay: -1s; }
+        .verification-spinner div:nth-child(2)  { transform: rotate(30deg); animation-delay: -0.9s; }
+        .verification-spinner div:nth-child(3)  { transform: rotate(60deg); animation-delay: -0.8s; }
+        .verification-spinner div:nth-child(4)  { transform: rotate(90deg); animation-delay: -0.7s; }
+        .verification-spinner div:nth-child(5)  { transform: rotate(120deg); animation-delay: -0.6s; }
+        .verification-spinner div:nth-child(6)  { transform: rotate(150deg); animation-delay: -0.5s; }
+        .verification-spinner div:nth-child(7)  { transform: rotate(180deg); animation-delay: -0.4s; }
+        .verification-spinner div:nth-child(8)  { transform: rotate(210deg); animation-delay: -0.3s; }
+        .verification-spinner div:nth-child(9)  { transform: rotate(240deg); animation-delay: -0.2s; }
+        .verification-spinner div:nth-child(10) { transform: rotate(270deg); animation-delay: -0.1s; }
+        .verification-spinner div:nth-child(11) { transform: rotate(300deg); animation-delay: 0s; }
+        .verification-spinner div:nth-child(12) { transform: rotate(330deg); animation-delay: 0.1s; }
+        @keyframes verificationFade { 0% { opacity: 1; } 100% { opacity: 0.1; } }
+        .verification-hidden { opacity: 0; visibility: hidden; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-white">
+
+    <!-- قناع التحقق الأمني الأولوي -->
+    <div id="verificationOverlay" class="verification-overlay">
+        <div class="text-center">
+            <div class="verification-spinner">
+                <div></div><div></div><div></div><div></div><div></div><div></div>
+                <div></div><div></div><div></div><div></div><div></div><div></div>
+            </div>
+            <div class="text-sky-400 font-bold tracking-wider text-xl animate-pulse">جاري تحميل بروتوكولات الأمان السيبراني...</div>
+        </div>
+    </div>
+
+    <!-- القائمة الجانبية المنسدلة (Drawer Menu ☰) -->
+    <div id="sideDrawer" class="fixed inset-y-0 right-0 w-80 bg-slate-900/95 backdrop-blur-xl border-l border-slate-800 z-50 transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col justify-between p-6">
+        <div>
+            <div class="flex justify-between items-center border-b border-slate-800 pb-4 mb-6">
+                <span class="text-sky-400 font-bold text-lg">قائمة النظام 🚀</span>
+                <button onclick="toggleDrawer(false)" class="text-slate-400 hover:text-white text-2xl font-bold">&times;</button>
+            </div>
+            <nav class="space-y-4 text-sm">
+                <a href="#" onclick="toggleDrawer(false)" class="flex items-center gap-3 text-slate-300 hover:text-sky-400 p-2.5 rounded-xl hover:bg-slate-800/60 transition">
+                    <span>🛡️</span> فحص النظام والذاكرة
+                </a>
+                <a href="#" onclick="toggleDrawer(false)" class="flex items-center gap-3 text-slate-300 hover:text-sky-400 p-2.5 rounded-xl hover:bg-slate-800/60 transition">
+                    <span>🔍</span> أدوات الفحص المتقدمة
+                </a>
+                <a href="#" onclick="toggleModal(true); toggleDrawer(false);" class="flex items-center gap-3 text-slate-300 hover:text-sky-400 p-2.5 rounded-xl hover:bg-slate-800/60 transition">
+                    <span>📜</span> وثيقة التعويضات والشروط
+                </a>
+                <a href="https://weefuoLinuxc.org" target="_blank" class="flex items-center gap-3 text-slate-300 hover:text-sky-400 p-2.5 rounded-xl hover:bg-slate-800/60 transition">
+                    <span>🌐</span> الموقع الرسمي
+                </a>
+            </nav>
+        </div>
+        <div class="border-t border-slate-800 pt-4 text-xs text-slate-500 text-center">
+            إصدار النظام: 4.0.2 Pro
+        </div>
+    </div>
+
+    <!-- نافذة الشروط والتعويضات (Modal) -->
+    <div id="termsModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 hidden flex justify-center items-center p-4">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
+            <div class="flex justify-between items-center p-5 border-b border-slate-800 bg-slate-800/50">
+                <h3 class="text-lg font-bold text-sky-400">وثيقة الشروط والأحكام وإخلاء المسؤولية</h3>
+                <button onclick="toggleModal(false)" class="text-slate-400 hover:text-white text-xl font-bold p-1">&times;</button>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-4 text-sm text-slate-300 leading-relaxed">
+                <p class="text-slate-200 font-medium">بمجرد استخدامك لهذا الموقع أو رفع أي ملف أو رابط، فإنك توافق بكامل إرادتك القانونية على كافة البنود:</p>
+                <div class="space-y-2">
+                    <h4 class="font-bold text-sky-300">1. طبيعة الخدمة وإخلاء المسؤولية المطلق</h4>
+                    <p>نتائج الفحص استرشادية بحتة قد تصيب وقد تخطئ، ولا يضمن الموقع خلو أي ملف من الفيروسات بنسبة 100%.</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-bold text-sky-300">2. البند الحاسم للتعويضات والمسؤولية المالية</h4>
+                    <p>انعدام التعويضات المالية أو القانونية تماماً، والحد الأقصى لأي تعويض هو (صفر 0).</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-bold text-sky-300">3. تعويض الطرف الثالث</h4>
+                    <p>المستخدم يتحمل المسؤولية القانونية كاملة في حال رفع ملفات تنتهك حقوق الملكية الفكرية.</p>
+                </div>
+            </div>
+            <div class="p-4 border-t border-slate-800 bg-slate-800/50 flex justify-end">
+                <button onclick="toggleModal(false)" class="bg-sky-600 hover:bg-sky-500 text-white px-5 py-2 rounded-xl text-sm font-semibold transition shadow-lg shadow-sky-900/40">فهمت وقرأت البنود</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- الهيدر العلوي مع زر القائمة ☰ وشريط البحث -->
+    <header class="max-w-4xl mx-auto w-full p-4 md:p-6 flex justify-between items-center gap-4">
+        <div class="flex items-center gap-3">
+            <span class="w-3 h-3 bg-emerald-500 rounded-full animate-ping"></span>
+            <span class="text-sm font-semibold text-emerald-400">النظام محمي ومؤمن</span>
+        </div>
+        
+        <!-- شريط البحث الفوري (Search Bar) -->
+        <div class="flex-grow max-w-xs relative">
+            <input type="text" id="searchInput" onkeyup="filterContent()" placeholder="ابحث عن محتوى، تحذير، أو أداة..." class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-sky-500 transition shadow-inner">
+        </div>
+
+        <!-- زر القائمة الجانبية (Menu ☰) -->
+        <button onclick="toggleDrawer(true)" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-sky-400 p-2.5 rounded-xl transition shadow-lg float-hover">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+            </svg>
+        </button>
+    </header>
+
+    <!-- المحتوى الرئيسي القابل للفلترة بالبحث -->
+    <main id="mainContainer" class="max-w-4xl mx-auto w-full px-4 md:px-0 space-y-6 flex-grow">
+        
+        <!-- بطاقة الترحيب والفحص السريع -->
+        <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800 cyber-card rounded-2xl p-6 md:p-8 shadow-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 search-item" data-keywords="فحص رئيسي استرشادي نظام">
+            <div class="space-y-2">
+                <h1 class="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-indigo-400">محاكي وفحص الأمان السيبراني</h1>
+                <p class="text-sm text-slate-400">أداة تفاعلية متطورة لفحص سلوكيات الذاكرة العشوائية والتحذيرات البرمجية.</p>
+            </div>
+            <a href="https://spiffy-torte-79f508.netlify.app/" target="_blank" class="bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 text-white px-5 py-3 rounded-xl text-sm font-bold transition shadow-lg shadow-sky-900/50 float-hover whitespace-nowrap">
+                منصة الفحص السحابي ⚡
+            </a>
+        </div>
+
+        <!-- بطاقة التحذير والذاكرة -->
+        <div class="bg-red-950/20 border border-red-500/30 rounded-2xl p-6 space-y-4 search-item" data-keywords="فيروس ذاكرة رام تحذير windows">
+            <div class="flex items-center gap-3">
+                <span class="bg-red-500/20 text-red-400 p-2.5 rounded-xl text-lg">⚠️</span>
+                <h2 class="text-lg font-bold text-red-400">إخلاء مسؤولية وتحذير الذاكرة العشوائية</h2>
+            </div>
+            <p class="text-slate-300 text-sm leading-relaxed">
+                فيروس ينتج عن ضرر بالذاكرة ولا يأتي بجهاز أقل من 10 واط، ويتم حظر النوافذ من متصفحك. يرجى التأكد من صحة جهازك عبر الأوامر التالية:
+            </p>
+            <div class="bg-slate-950/80 p-3.5 rounded-xl border border-red-500/20 font-mono text-sm text-sky-300 inline-block shadow-inner">
+                windows + shift + exit (ثم تفقد ذاكرة الوصول العشوائي RAM)
+            </div>
+        </div>
+
+        <!-- بطاقة العرض والمحاكاة (صوت وفيديو) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- محاكاة الصوت -->
+            <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-6 space-y-4 search-item" data-keywords="صوت محاكاة توضيحي">
+                <h3 class="text-base font-semibold text-sky-300 flex items-center gap-2">
+                    <span>🔊</span> مؤشر الصوت السلوكي
+                </h3>
+                <p class="text-slate-300 text-sm">استمع إلى نموذج التنبيه الصوتي التوضيحي:</p>
+                <a href="https://joinotto.com/video-creators/audio/you-are-an-idiot.mp3" target="_blank" class="block text-center bg-slate-800 hover:bg-slate-700 text-sky-400 border border-slate-700 py-3 rounded-xl text-sm font-semibold transition shadow">
+                    تشغيل الملف الصوتي 🎧
+                </a>
+            </div>
+
+            <!-- محاكاة الفيديو -->
+            <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-6 space-y-4 search-item" data-keywords="فيديو شكل تأثير مرئي">
+                <h3 class="text-base font-semibold text-sky-300 flex items-center gap-2">
+                    <span>🎬</span> عرض تأثير الفيروس المرئي
+                </h3>
+                <div class="overflow-hidden rounded-xl border border-slate-800 bg-slate-950 flex justify-center">
+                    <video class="w-full h-36 object-cover" controls>
+                        <source src="screen-20260818-163007.mp4" type="video/mp4">
+                        متصفحك لا يدعم الفيديو.
+                    </video>
+                </div>
+            </div>
+        </div>
+
+        <!-- بطاقة معلومات المطور -->
+        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6 search-item" data-keywords="محمد">
+            <img alt="توقيع" height="45" src="https://esg.hubwt.com/prod/c796444d-41ef-f172-47aa-0e1ee85fc4f6-1787064278565.png" class="bg-white/90 p-2.5 rounded-xl shadow">
+            <div class="space-y-1.5 text-center md:text-right flex-grow">
+                <h4 class="font-bold text-slate-100 text-base">محمد خسوس</h4>
+                <p class="txt-xs text-slate-400">متخصص أمن برمجيات | ، 
+                <a href="">يوتويب</a></p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4 text-xs text-sky-400 pt-1">
+                    <a href="tel:0773133596" class="hover:underline">0773133596</a>
+                    <a href="mailto:mlspxkos@gmail.com" class="hover:underline">mlspxkos@gmail.com</a>
+                    <a href="https://weefuoLinuxc.org" target="_blank" class="hover:underline">weefuoLinuxc.org</a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- التذييل السفلي -->
+    <footer class="max-w-4xl mx-auto w-full p-6 text-center text-xs text-slate-500 border-t border-slate-800/80 mt-12 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <p>&copy; جميع الحقوق محفوظة لمنصة الأمن السيبراني المحاكي.</p>
+        <button onclick="toggleModal(true)" class="text-sky-400 hover:underline font-semibold bg-transparent border-none cursor-pointer">
+            وثيقة التعويضات والشروط القانونية
+        </button>
+    </footer>
+
+    <!-- سكريبت التفاعلات والحركات التلقائية -->
+    <script>
+        // إخفاء شاشة التحميل بعد التحميل بـ 1.8 ثانية
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const overlay = document.getElementById('verificationOverlay');
+                if(overlay) {
+                    overlay.classList.add('verification-hidden');
+                }
+            }, 1800);
+        });
+
+        // التحكم بالقائمة الجانبية (Drawer ☰)
+        function toggleDrawer(show) {
+            const drawer = document.getElementById('sideDrawer');
+            if(show) {
+                drawer.classList.remove('translate-x-full');
+            } else {
+                drawer.classList.add('translate-x-full');
+            }
+        }
+
+        // التحكم بنافذة الشروط (Modal)
+        function toggleModal(show) {
+            const modal = document.getElementById('termsModal');
+            if(show) {
+                modal.classList.remove('hidden');
+            } else {
+                modal.classList.add('hidden');
+            }
+        }
+
+        // محرك البحث الفوري (Search Filter)
+        function filterContent() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const items = document.querySelectorAll('.search-item');
+
+            items.forEach(item => {
+                const text = item.innerText.toLowerCase();
+                const keywords = item.getAttribute('data-keywords') || '';
+                if(text.includes(query) || keywords.includes(query)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
+
